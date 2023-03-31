@@ -1,0 +1,180 @@
+#main{
+  display: flex;
+  width: 99vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#search{
+  margin: 1em;
+  margin-bottom: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#search > button {
+  padding: 1em;
+  margin-left: 1em;
+}
+
+#searchOptions{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 1em;
+}
+
+#searchOptions > button {
+  padding: 1em;
+  margin-left: 1em;
+}
+
+#info{
+  display: flex;
+  width: 97%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#title{
+  display: flex;
+  margin-left: 9vw;
+  align-items: center;
+}
+
+#info > div:first-child{
+
+  margin-right: auto;
+  visibility: hidden;
+}
+
+#info > div:last-child{
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+
+.googleLogin{
+  display: flex;
+  justify-content: end;
+}
+
+#datePickerContainer{
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 2em;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#searchArrow{
+  font-size: 2.0em;
+  transition: transform 0.3s;
+  transform: rotate(180deg);
+}
+
+#searchArrow:hover, #searchArrow2:hover{
+  cursor: pointer;
+}
+
+#searchArrow2{
+  font-size: 2.0em;
+  transition: transform 0.3s;
+  transform: rotate(0deg);
+}
+
+.datePicker{
+  height: 100%;
+}
+
+.datePickerLabel{
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#videoRenderer{
+  margin-top: 3em;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#searchWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#buttonList{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+#buttonList > button{
+  padding: 1em;
+  margin-left: 1em;
+}
+
+.videoInfo{
+  width: 20vw;
+}
+
+.videoTitle{
+  overflow: hidden;
+}
+
+.videoThumbnail{
+  width: 20vw;
+  height: 20vh;
+  border-radius: 30px;
+}
+
+.video{
+  width: 20vw;
+  height: 20vh;
+  margin-bottom: 10em;
+  margin-right: 1em;
+}
+
+.titleText{
+  font-size: 1em;
+  color: #9e9e9e;
+}
+
+.otherText{
+  font-size: 1em;
+  color: #6b6b6b;
+}
+
+.animateVideo{
+  transition: transform 0.5s;
+}
+
+.animateVideo:hover {
+  transform: scale(1.05);
+}
+
+.otherInfo{
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+  margin-top: 0.5em;
+}
+
+.dot{
+  color: #c8ffa1;
+}

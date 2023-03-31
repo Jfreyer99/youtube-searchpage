@@ -1,0 +1,34 @@
+{
+  "name": "youtube-searchpage",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/google-one-tap": "^1.2.2",
+    "@types/google.accounts": "^0.0.7",
+    "@types/uuid": "^9.0.1",
+    "axios": "^1.3.4",
+    "google-one-tap": "^1.0.6",
+    "jwt-decode": "^3.1.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
+    "react-infinite-scroller": "^1.2.6",
+    "util": "^0.12.5",
+    "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@types/react-infinite-scroller": "^1.2.3",
+    "@vitejs/plugin-react": "^3.1.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0"
+  }
+}
