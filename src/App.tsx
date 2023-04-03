@@ -18,7 +18,8 @@ const App:FC = () => {
           <div><GoogleLogin setUser={setUser} user={user}> </GoogleLogin></div>
       </div>
         <SearchBar setVideos={setVideos}></SearchBar>
-        <VideoRenderer videos={videos}></VideoRenderer>
+         {/** Render Video Renderer when search button is clicked pass handle to component */}
+        <VideoRenderer handle={"@PaulDavids"} ></VideoRenderer>
       </div>
   )
 }

@@ -6,7 +6,7 @@ import usePosts from './hooks/usePosts';
 const Video = lazy(() => import("./Video"));
 
 interface AppProps{
-    videos: Array<Object>,
+    handle : string
 }
 
 //TODO uuid-v4 for key
@@ -21,7 +21,7 @@ const VideoRenderer:FC<AppProps> = (props) => {
         error,
         results,
         hasNextPage
-    } = usePosts(pageNum, "@PaulDavids")
+    } = usePosts(pageNum, props.handle)
     
     const intObserver = useRef<IntersectionObserver>();
 
