@@ -7,8 +7,13 @@ import GoogleLogin from './GoogleLogin'
 
 const App:FC = () => {
 
-  const[videos, setVideos] = useState(Array<Object>)
   const[user, setUser] = useState({})
+  const[currentSubmittedUserHandle, setCurrentSubmittedUserHandle] = useState("");
+  const[searching, setSearching] = useState(false)
+
+  const getChannelHandle = (handle : string) => {
+    setCurrentSubmittedUserHandle(handle);
+  }
 
   return (
     <div id="main">
@@ -17,9 +22,9 @@ const App:FC = () => {
           <div id="title"><h1 >Advanced Youtube Search</h1></div>
           <div><GoogleLogin setUser={setUser} user={user}> </GoogleLogin></div>
       </div>
-        <SearchBar setVideos={setVideos}></SearchBar>
+        <SearchBar getHandle={getChannelHandle} setSearching={setSearching}></SearchBar>
          {/** Render Video Renderer when search button is clicked pass handle to component */}
-        <VideoRenderer handle={"@PaulDavids"} ></VideoRenderer>
+        {searching && <VideoRenderer handle={currentSubmittedUserHandle} ></VideoRenderer>}
       </div>
   )
 }

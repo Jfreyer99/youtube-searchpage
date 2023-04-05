@@ -12,7 +12,6 @@ const usePosts = (pageNum = 1, handle : string) => {
         setIsLoading(true);
         setIsError(false);
         setError({"message" : ""});
-
         const controller = new AbortController();
         const { signal } = controller;
 
@@ -38,9 +37,9 @@ const usePosts = (pageNum = 1, handle : string) => {
                 setError({ "message": e.message });
             });
         return () => controller.abort();
-    }, [pageNum])
+    }, [pageNum, handle])
  
-    return { isLoading, isError, error, results, hasNextPage}
+    return { isLoading, isError, error, results, hasNextPage, setResults}
 }
 
 export default usePosts;

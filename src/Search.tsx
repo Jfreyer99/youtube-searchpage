@@ -1,8 +1,15 @@
-import { useState, FC } from 'react'
+import { useState, FC, useRef } from 'react'
 import {AiOutlineArrowUp} from 'react-icons/ai'
 
 interface AppProps{
-    setVideos : React.Dispatch<React.SetStateAction<Object[]>>,
+    getHandle: (s : string) => void,
+    setSearching?: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+type QueryOptions = {
+    dateFrom: string,
+    dateTo: string,
+    title: string,
 }
 
 const SearchBar:FC<AppProps> = (props) => {
@@ -12,31 +19,45 @@ const SearchBar:FC<AppProps> = (props) => {
     const[handle, setHandle] = useState("")
     const[dateFrom, setDateFrom] = useState("");
     const[dateTo, setDateTo] = useState("");
-
     const[title, setTitle] = useState("")
+
+
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
     const toggleOptions = (e : React.MouseEvent<SVGElement, MouseEvent>) => {
         setOptionsVisible((prevState) => !prevState);
     }
 
     const buttonClick = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        // Set State to invoke usePosts()
+        e.preventDefault();
+        props.getHandle(handle);
+        if(props.setSearching){
+        props.setSearching(true);
+        }
+    }
+
+    const handleSubmit = (e : React.FormEvent) => {
+        e.preventDefault();
+        props.getHandle(handle);
+        if(props.setSearching){
+        props.setSearching(true);
+        }
     }
 
     return(
+    <form onSubmit={handleSubmit}>
     <div id="searchWrapper">
-
         <div id="search">
             <input type="text" onChange={(e) => setHandle(e.target.value)} placeholder="@handle"></input>
-            <button onClick={(e) => buttonClick(e)}>Search</button>
+            <button ref={buttonRef} onClick={buttonClick}>Search</button>
         </div>
 
         <AiOutlineArrowUp onClick={(e) => toggleOptions(e)} id={optionsVisible ? "searchArrow" : "searchArrow2"}></AiOutlineArrowUp>
 
         { optionsVisible && (<div id="searchOptions">
             <div id="buttonList">
-            <button onClick={(e) => buttonClick(e)}>Älteste</button>
-            <button onClick={(e) => buttonClick(e)}>Beliebteste</button>
+            <button onClick={buttonClick}>Älteste</button>
+            <button onClick={buttonClick}>Beliebteste</button>
             </div>
             <div id="datePickerContainer">
                 <label className="datePickerLabel" htmlFor="from">From:</label>
@@ -46,7 +67,8 @@ const SearchBar:FC<AppProps> = (props) => {
             </div>
             <input value={title} onChange={(e) => setTitle(e.target.value)} id="titleSearch" type="text" placeholder='Input title to search for'></input>
         </div>)}
-    </div>
+        </div>
+    </form>
     )
 }
 

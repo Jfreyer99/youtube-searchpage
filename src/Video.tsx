@@ -1,6 +1,4 @@
-import { FC, JSXElementConstructor} from 'react'
 import {BsDot} from 'react-icons/bs'
-import InfiniteScroll from 'react-infinite-scroller';
 import React from 'react';
 
 interface VideoRendererProps{
@@ -12,7 +10,6 @@ interface VideoRendererProps{
 }
 
 const Video = React.forwardRef<HTMLDivElement, VideoRendererProps>((props, ref) => {
-
     const videoBody = (
         <a className="videoURL" href={`https://youtube.com${props.videoURL}`} target="_blank">
         <div className="video">

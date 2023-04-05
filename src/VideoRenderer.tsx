@@ -1,7 +1,5 @@
-import { FC, lazy, useState, useCallback, useRef } from 'react'
+import { FC, lazy, useState, useCallback, useRef, useEffect } from 'react'
 import usePosts from './hooks/usePosts';
-
-//import {uuid} from    'uuidv4'
 
 const Video = lazy(() => import("./Video"));
 
@@ -9,20 +7,23 @@ interface AppProps{
     handle : string
 }
 
-//TODO uuid-v4 for key
-
 const VideoRenderer:FC<AppProps> = (props) => {
     const [pageNum, setPageNum] = useState(0);
 
-    //Invoke hook on button click in search component (useEffect), usePosts empty  add handle to videoRenderer props interface
+    useEffect(() => {
+        setResults([])
+        setPageNum(0)
+    }, [props.handle])
+
     const {
         isLoading,
         isError,
         error,
         results,
-        hasNextPage
+        hasNextPage,
+        setResults
     } = usePosts(pageNum, props.handle)
-    
+
     const intObserver = useRef<IntersectionObserver>();
 
     const lastPostRef = useCallback((video: HTMLDivElement) => {
@@ -39,7 +40,6 @@ const VideoRenderer:FC<AppProps> = (props) => {
         if(video){
             intObserver.current.observe(video);
         }
-
     }, [isLoading, hasNextPage]);
 
     if(isError) return <p>Error: {error.message}</p>
