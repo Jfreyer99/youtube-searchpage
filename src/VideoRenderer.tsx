@@ -1,19 +1,21 @@
 import { FC, lazy, useState, useCallback, useRef, useEffect } from 'react'
 import usePosts from './hooks/usePosts';
 
+import { QueryOptions } from './typedef/typedef'
+
 const Video = lazy(() => import("./Video"));
 
 interface AppProps{
-    handle : string
+    handle : string,
+    queryParams: QueryOptions,
 }
 
+const e : QueryOptions = {
+    sort: 0
+  }
+ 
 const VideoRenderer:FC<AppProps> = (props) => {
     const [pageNum, setPageNum] = useState(0);
-
-    useEffect(() => {
-        setResults([])
-        setPageNum(0)
-    }, [props.handle])
 
     const {
         isLoading,
@@ -22,7 +24,12 @@ const VideoRenderer:FC<AppProps> = (props) => {
         results,
         hasNextPage,
         setResults
-    } = usePosts(pageNum, props.handle)
+    } = usePosts(pageNum, props.handle, props.queryParams)
+
+    useEffect(() => {
+        setResults([])
+        setPageNum(0)
+    }, [props.handle, props.queryParams])
 
     const intObserver = useRef<IntersectionObserver>();
 

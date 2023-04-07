@@ -1,7 +1,9 @@
 import  { useState, useEffect} from 'react'
 import {getPostsPage} from "../api/axios"
 
-const usePosts = (pageNum = 1, handle : string) => {
+import { QueryOptions } from "../typedef/typedef"
+
+const usePosts = (pageNum : number, handle : string, queryParams: QueryOptions) => {
     const [results, setResults] = useState(Array<Object>);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
@@ -15,29 +17,32 @@ const usePosts = (pageNum = 1, handle : string) => {
         const controller = new AbortController();
         const { signal } = controller;
 
-        getPostsPage(pageNum, handle, { signal })
+        getPostsPage(pageNum, handle, queryParams,{ signal })
             .then(data => {
                 let hasNext = null;
-                if(data.videos === undefined){
+                if(data.length === 0){
                     hasNext = false;
                     setHasNextPage(hasNext);
                     setIsLoading(false);
                 }
                 else{
                 hasNext = true;
-                setResults((prev) => [...prev, ...data.videos]);
+                setResults((prev) => [...prev, ...data]);
                 setHasNextPage(hasNext);
                 setIsLoading(false);
                 }
             })
             .catch(e => {
                 setIsLoading(false);
-                if(signal.aborted)  return;
+                setHasNextPage(false);
+                if(signal.aborted){
+                    return;
+                } 
                 setIsError(true);
                 setError({ "message": e.message });
             });
         return () => controller.abort();
-    }, [pageNum, handle])
+    }, [pageNum, handle, queryParams])
  
     return { isLoading, isError, error, results, hasNextPage, setResults}
 }
