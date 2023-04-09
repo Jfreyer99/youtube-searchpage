@@ -1,6 +1,5 @@
-export type QueryOptions= {
-    dateFrom?: string,
-    dateTo?: string,
+export declare type QueryOptions= {
+    dateBefore?: string,
     title?: string,
-    sort: number
+    sort?: number
 }

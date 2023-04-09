@@ -1,4 +1,5 @@
 import { useState, FC, useRef } from 'react'
+import React from 'react'
 import {AiOutlineArrowUp} from 'react-icons/ai'
 
 import { QueryOptions } from './typedef/typedef'
@@ -7,77 +8,70 @@ interface AppProps{
     setCurrentSubmittedUserHandle: React.Dispatch<React.SetStateAction<string>>,
     setSearching?: React.Dispatch<React.SetStateAction<boolean>>,
     setQueryParams: React.Dispatch<React.SetStateAction<QueryOptions>>,
+    searching: boolean
 }
 
 const SearchBar:FC<AppProps> = (props) => {
 
     const[optionsVisible, setOptionsVisible] = useState(false);
     const[handle, setHandle] = useState("")
-    const[dateFrom, setDateFrom] = useState("");
-    const[dateTo, setDateTo] = useState("");
+    const[before, setBefore] = useState(new Date().toISOString().split("T")[0]);
     const[title, setTitle] = useState("")
 
     const toggleOptions = (e : React.MouseEvent<SVGElement, MouseEvent>) => {
         setOptionsVisible((prevState) => !prevState);
     }
 
-    const buttonClickNew = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleSearch = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const name : string = e.currentTarget.name;
         props.setCurrentSubmittedUserHandle(handle)
-        props.setQueryParams({"sort": -1});
+
+        switch(name){
+            case "old": props.setQueryParams({"sort": 1, "title": title, "dateBefore": before});
+                break;
+            case "new": props.setQueryParams({"sort": -1, "title": title, "dateBefore": before});
+                break;
+            case "fav": props.setQueryParams({"sort": NaN, "title": title, "dateBefore": before});
+                break;
+        }
 
         if(props.setSearching){
-        props.setSearching(true);
+            props.setSearching(true);
         }
     }
 
-    const buttonClickOld = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-        props.setCurrentSubmittedUserHandle(handle)
-        props.setQueryParams({"sort": 1});
-        if(props.setSearching){
-        props.setSearching(true);
+        
+        if(e.currentTarget.value === ""){
+            setBefore(new Date().toISOString().split("T")[0]);
         }
-    }
-
-    const buttonClickFav = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault();
-        props.setCurrentSubmittedUserHandle(handle)
-        props.setQueryParams({"sort": -1});
-        if(props.setSearching){
-        props.setSearching(true);
-        }
-    }
-
-    const handleSubmit = (e : React.FormEvent) => {
-        e.preventDefault();
-        props.setCurrentSubmittedUserHandle(handle)
-        props.setQueryParams({"sort": -1});
-        if(props.setSearching){
-        props.setSearching(true);
+        else{
+            setBefore(e.target.value);
         }
     }
 
     return(
-    <form onSubmit={handleSubmit}>
+    <form name="submit" onSubmit={handleSearch}>
     <div id="searchWrapper">
         <div id="search">
             <input type="text" onChange={(e) => setHandle(e.target.value)} placeholder="@handle"></input>
-            <button onClick={buttonClickNew}>Search</button>
-        </div>
+            <button name ="new" onClick={handleSearch}>Search</button>
+    </div>
 
         <AiOutlineArrowUp onClick={toggleOptions} id={optionsVisible ? "searchArrow" : "searchArrow2"}></AiOutlineArrowUp>
 
         { optionsVisible && (<div id="searchOptions">
             <div id="buttonList">
-            <button onClick={buttonClickOld}>Älteste</button>
-            <button onClick={buttonClickFav}>Beliebteste</button>
+            <button name="old" onClick={handleSearch}>Älteste</button>
+            <button name="fav" onClick={handleSearch}>Beliebteste</button>
             </div>
             <div id="datePickerContainer">
-                <label className="datePickerLabel" htmlFor="from">From:</label>
-                <input value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} className="datePicker" id="from" type="date" ></input>
-                <label className="datePickerLabel" htmlFor="to">To:</label>
-                <input value={dateTo} onChange={(e) => setDateTo(e.target.value)} className="datePicker" id="to" type="date" ></input>
+
+                <label className="datePickerLabel" htmlFor="from">Uploaded Before:</label>
+                <input value={before} onChange={handleChange} className="datePicker" id="from" type="date" max={new Date().toISOString().split("T")[0]} min="2005-04-01"></input>
+
             </div>
             <input value={title} onChange={(e) => setTitle(e.target.value)} id="titleSearch" type="text" placeholder='Input title to search for'></input>
         </div>)}

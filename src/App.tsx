@@ -1,4 +1,4 @@
-import { useState, FC} from 'react'
+import { useState, FC, Suspense} from 'react'
 import './App.css'
 
 import { QueryOptions } from './typedef/typedef'
@@ -25,9 +25,11 @@ const App:FC = () => {
           <div id="title"><h1 >Advanced Youtube Search</h1></div>
           <div><GoogleLogin setUser={setUser} user={user}> </GoogleLogin></div>
       </div> */}
-        <SearchBar setCurrentSubmittedUserHandle={setCurrentSubmittedUserHandle} setQueryParams={setQueryParams} setSearching={setSearching}></SearchBar>
+        <SearchBar searching={searching} setCurrentSubmittedUserHandle={setCurrentSubmittedUserHandle} setQueryParams={setQueryParams} setSearching={setSearching}></SearchBar>
 
+        <Suspense fallback={<h1> Loading... </h1>}>
         {searching && <VideoRenderer queryParams={queryParams} handle={currentSubmittedUserHandle} ></VideoRenderer>}
+        </Suspense>
       </div>
   )
 }

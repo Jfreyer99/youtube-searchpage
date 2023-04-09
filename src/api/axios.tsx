@@ -6,6 +6,6 @@ export const api = axios.create({
 });
 
 export const getPostsPage = async (pageParam = 0, handle = "", searchOptions : QueryOptions, options = {}) => {
-    const response = await api.get(`/${handle}/?page=${pageParam}&sort=${searchOptions.sort}`, options)
+    const response = await api.get(`/${handle}/?page=${pageParam}&sort=${searchOptions.sort}&title=${searchOptions.title}&dateBefore=${searchOptions.dateBefore}`, options)
     return response.data;
 }

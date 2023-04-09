@@ -17,7 +17,13 @@ const e : QueryOptions = {
 const VideoRenderer:FC<AppProps> = (props) => {
     const [pageNum, setPageNum] = useState(0);
 
-    const {
+
+    useEffect(() => {
+        setResults([])
+        setPageNum(0)
+    }, [props.handle, props.queryParams])
+
+    let {
         isLoading,
         isError,
         error,
@@ -25,11 +31,6 @@ const VideoRenderer:FC<AppProps> = (props) => {
         hasNextPage,
         setResults
     } = usePosts(pageNum, props.handle, props.queryParams)
-
-    useEffect(() => {
-        setResults([])
-        setPageNum(0)
-    }, [props.handle, props.queryParams])
 
     const intObserver = useRef<IntersectionObserver>();
 

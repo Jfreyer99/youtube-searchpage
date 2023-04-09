@@ -41,7 +41,9 @@ const usePosts = (pageNum : number, handle : string, queryParams: QueryOptions) 
                 setIsError(true);
                 setError({ "message": e.message });
             });
-        return () => controller.abort();
+        return () => {
+            controller.abort();
+        };
     }, [pageNum, handle, queryParams])
  
     return { isLoading, isError, error, results, hasNextPage, setResults}
