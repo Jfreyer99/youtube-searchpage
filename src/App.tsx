@@ -11,9 +11,10 @@ const App:FC = () => {
   return (
     <>
     <Routes>
-      <Route path="/" element={<VideoRendererWrapper/>}></Route>
-      <Route path="/:handleUrl" element={<VideoRendererWrapper/>}></Route>
+      <Route path="/search" element={<VideoRendererWrapper/>}></Route>
+      <Route path="/search/:handleUrl" element={<VideoRendererWrapper/>}></Route>
       <Route path="/Login" element={<h1>Login</h1>}></Route>
+      <Route path="*" element={<h1>404 Page Not Found</h1>}></Route>
     </Routes>
     </>
   )

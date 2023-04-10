@@ -5,17 +5,14 @@ import { QueryOptions } from '../types/typedef'
 
 import SearchBar from './SearchBar'
 import VideoRenderer from '../components/VideoRenderer'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 
-const e : QueryOptions = {
-  sort: 0
-}
 
 const VideoRendererWrapper:FC = () => {
 
     const { handleUrl } = useParams();
     const[currentSubmittedUserHandle, setCurrentSubmittedUserHandle] = useState("");
-    const[queryParams, setQueryParams] = useState<QueryOptions>(e)
+    const[queryParams, setQueryParams] = useState<QueryOptions>({"sort": -1, "title": "", "dateBefore": new Date().toISOString().split("T")[0]})
     const[searching, setSearching] = useState(false)
 
   return (

@@ -1,6 +1,6 @@
 import { useState, FC, useRef, useEffect } from 'react'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import {AiOutlineArrowUp} from 'react-icons/ai'
 import { QueryOptions } from '../types/typedef'
 
@@ -24,7 +24,6 @@ const SearchBar:FC<AppProps> = (props) => {
     useEffect(() => {
         if(props.handleUrl){
             setHandle(props.handleUrl)
-            props.setQueryParams({"sort": -1, "title": title, "dateBefore": before});
             props.setCurrentSubmittedUserHandle(props.handleUrl)
             if(props.setSearching){
                 props.setSearching(true);
@@ -36,17 +35,13 @@ const SearchBar:FC<AppProps> = (props) => {
         setOptionsVisible((prevState) => !prevState);
     }
 
-    const handleTextChange = (e?: React.ChangeEvent<HTMLInputElement>, handleFromUrl?: string) => {
-        if(handleFromUrl){
-            setHandle(handleFromUrl);
-        }
-        else if(e !== undefined){
-            setHandle(e.target.value) 
-        }
+    const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setHandle(e.target.value) 
     }
 
     const handleSearch = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         const name : string = e.currentTarget.name;
         switch(name){
             case "old": props.setQueryParams({"sort": 1, "title": title, "dateBefore": before});
@@ -56,13 +51,11 @@ const SearchBar:FC<AppProps> = (props) => {
             case "fav": props.setQueryParams({"sort": NaN, "title": title, "dateBefore": before});
                 break;
         }
-
-        navigate(`/${handle}`);
+        navigate(`/search/${handle}`);
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-        
         if(e.currentTarget.value === ""){
             setBefore(new Date().toISOString().split("T")[0]);
         }
@@ -75,7 +68,7 @@ const SearchBar:FC<AppProps> = (props) => {
     <form name="submit" onSubmit={handleSearch}>
     <div id="searchWrapper">
         <div id="search">
-            <input type="text" onChange={handleTextChange} placeholder="@handle"></input>
+            <input type="text" value={handle} onChange={handleTextChange} placeholder="@handle"></input>
             <button name ="new" onClick={handleSearch}>Search</button>
     </div>
 
