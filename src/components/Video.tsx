@@ -30,9 +30,9 @@ const Video = React.forwardRef<HTMLDivElement, VideoRendererProps>((props, ref) 
     const content = ref ? <div ref={ref}>{videoBody}</div> : <div>{videoBody}</div>
 
     return (
-        <>
+        <div className="p-10">
         {content}
-        </>
+        </div>
     );
 });
 

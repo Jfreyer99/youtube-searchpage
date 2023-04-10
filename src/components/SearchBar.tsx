@@ -1,6 +1,6 @@
 import { useState, FC, useRef, useEffect } from 'react'
 import React from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {AiOutlineArrowUp} from 'react-icons/ai'
 import { QueryOptions } from '../types/typedef'
 
