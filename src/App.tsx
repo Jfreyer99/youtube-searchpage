@@ -4,7 +4,8 @@ import './App.css'
 import VideoRendererWrapper from './components/VideoRendererWrapper';
 import { Route, Routes } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
-
+import Register from './components/Register';
+import Login from './components/Login';
 
 const App:FC = () => {
 
@@ -13,7 +14,8 @@ const App:FC = () => {
     <Routes>
       <Route path="/search" element={<VideoRendererWrapper/>}></Route>
       <Route path="/search/:handleUrl" element={<VideoRendererWrapper/>}></Route>
-      <Route path="/Login" element={<h1>Login</h1>}></Route>
+      <Route path="/Register" element={<Register></Register>}></Route>
+      <Route path="/Login" element={<Login></Login>}></Route>
       <Route path="*" element={<h1>404 Page Not Found</h1>}></Route>
     </Routes>
     </>
