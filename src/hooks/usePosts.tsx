@@ -1,9 +1,9 @@
 import  { useState, useEffect} from 'react'
 import {getPostsPage} from "../api/axios"
 
-import { QueryOptions } from "../typedef/typedef"
+import { QueryOptions } from "../types/typedef"
 
-const usePosts = (pageNum : number, handle : string, queryParams: QueryOptions) => {
+const usePosts = (pageNum : number, handle : string , queryParams: QueryOptions) => {
     const [results, setResults] = useState(Array<Object>);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);

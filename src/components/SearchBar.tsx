@@ -1,32 +1,53 @@
-import { useState, FC, useRef } from 'react'
+import { useState, FC, useRef, useEffect } from 'react'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import {AiOutlineArrowUp} from 'react-icons/ai'
-
-import { QueryOptions } from './typedef/typedef'
+import { QueryOptions } from '../types/typedef'
 
 interface AppProps{
     setCurrentSubmittedUserHandle: React.Dispatch<React.SetStateAction<string>>,
     setSearching?: React.Dispatch<React.SetStateAction<boolean>>,
     setQueryParams: React.Dispatch<React.SetStateAction<QueryOptions>>,
-    searching: boolean
+    searching: boolean,
+    handleUrl: string | undefined
 }
 
 const SearchBar:FC<AppProps> = (props) => {
+
+    const navigate = useNavigate();
 
     const[optionsVisible, setOptionsVisible] = useState(false);
     const[handle, setHandle] = useState("")
     const[before, setBefore] = useState(new Date().toISOString().split("T")[0]);
     const[title, setTitle] = useState("")
 
+    useEffect(() => {
+        if(props.handleUrl){
+            setHandle(props.handleUrl)
+            props.setQueryParams({"sort": -1, "title": title, "dateBefore": before});
+            props.setCurrentSubmittedUserHandle(props.handleUrl)
+            if(props.setSearching){
+                props.setSearching(true);
+            }
+        }
+    },[props.handleUrl]);
+
     const toggleOptions = (e : React.MouseEvent<SVGElement, MouseEvent>) => {
         setOptionsVisible((prevState) => !prevState);
+    }
+
+    const handleTextChange = (e?: React.ChangeEvent<HTMLInputElement>, handleFromUrl?: string) => {
+        if(handleFromUrl){
+            setHandle(handleFromUrl);
+        }
+        else if(e !== undefined){
+            setHandle(e.target.value) 
+        }
     }
 
     const handleSearch = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const name : string = e.currentTarget.name;
-        props.setCurrentSubmittedUserHandle(handle)
-
         switch(name){
             case "old": props.setQueryParams({"sort": 1, "title": title, "dateBefore": before});
                 break;
@@ -36,9 +57,7 @@ const SearchBar:FC<AppProps> = (props) => {
                 break;
         }
 
-        if(props.setSearching){
-            props.setSearching(true);
-        }
+        navigate(`/${handle}`);
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,12 +75,11 @@ const SearchBar:FC<AppProps> = (props) => {
     <form name="submit" onSubmit={handleSearch}>
     <div id="searchWrapper">
         <div id="search">
-            <input type="text" onChange={(e) => setHandle(e.target.value)} placeholder="@handle"></input>
+            <input type="text" onChange={handleTextChange} placeholder="@handle"></input>
             <button name ="new" onClick={handleSearch}>Search</button>
     </div>
 
         <AiOutlineArrowUp onClick={toggleOptions} id={optionsVisible ? "searchArrow" : "searchArrow2"}></AiOutlineArrowUp>
-
         { optionsVisible && (<div id="searchOptions">
             <div id="buttonList">
             <button name="old" onClick={handleSearch}>Älteste</button>

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { QueryOptions } from '../typedef/typedef';
+import { QueryOptions } from '../types/typedef';
 
 export const api = axios.create({
     baseURL : `http://localhost:8000/v1/youtubeVideoList`

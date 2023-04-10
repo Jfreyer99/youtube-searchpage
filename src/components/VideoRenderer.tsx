@@ -1,7 +1,8 @@
 import { FC, lazy, useState, useCallback, useRef, useEffect } from 'react'
-import usePosts from './hooks/usePosts';
+import { useParams } from 'react-router-dom';
+import usePosts from '../hooks/usePosts';
 
-import { QueryOptions } from './typedef/typedef'
+import { QueryOptions } from '../types/typedef'
 
 const Video = lazy(() => import("./Video"));
 
@@ -11,12 +12,11 @@ interface AppProps{
 }
 
 const e : QueryOptions = {
-    sort: 0
+    sort: -1
   }
  
 const VideoRenderer:FC<AppProps> = (props) => {
     const [pageNum, setPageNum] = useState(0);
-
 
     useEffect(() => {
         setResults([])
