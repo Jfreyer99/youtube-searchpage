@@ -51,7 +51,7 @@ const SearchBar:FC<AppProps> = (props) => {
             case "fav": props.setQueryParams({"sort": NaN, "title": title, "dateBefore": before});
                 break;
         }
-        navigate(`/search/${handle}`);
+        navigate(`/${handle}`);
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,0 +1,61 @@
+*{
+    font-size: 1em;
+}
+
+.registerCardWrapper{
+    background: linear-gradient(to bottom, rgba(36, 36, 36, 0.729), rgba(0, 0, 0, 0.8)), url("./../assets/register-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.registerCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 50vw;
+    border-radius: 10px;
+}
+
+.registerInputText{
+    padding: 1.2em;
+    margin: 15px;
+    width: 70%;
+}
+
+.registerInputText:focus{
+    outline: none;
+}
+
+.registerCheckbox{
+    background-color: green;
+    margin: 10px;
+}
+
+.registerButton{
+    padding: 1.0em;
+    margin: 15px;
+    font-size: 1.2em;
+    width: 70%;
+}
+
+.registerBottomText{
+    font-size: 1em;
+}
+
+.registerBottomText:hover{
+    scale: 1.2;
+    cursor: pointer;
+}
+
+.tos{
+    display: flex;
+    padding: 0.5em;
+}

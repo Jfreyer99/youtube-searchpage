@@ -2,7 +2,6 @@ import { useState, FC, Suspense, useEffect} from 'react'
 import '../App.css'
 
 import { QueryOptions } from '../types/typedef'
-
 import SearchBar from './SearchBar'
 import VideoRenderer from '../components/VideoRenderer'
 import { useParams, useSearchParams } from 'react-router-dom'

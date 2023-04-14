@@ -11,10 +11,6 @@ interface AppProps{
     queryParams: QueryOptions,
 }
 
-const e : QueryOptions = {
-    sort: -1
-  }
- 
 const VideoRenderer:FC<AppProps> = (props) => {
     const [pageNum, setPageNum] = useState(0);
 
