@@ -6,7 +6,6 @@ const Header:FC = () => {
 
     const navigate = useNavigate();
 
-
     const handleLogin = (e: React.MouseEvent) => {
         navigate("/login")
     }

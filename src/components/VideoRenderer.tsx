@@ -2,7 +2,7 @@ import { FC, lazy, useState, useCallback, useRef, useEffect, Suspense } from 're
 import { useParams } from 'react-router-dom';
 import usePosts from '../hooks/usePosts';
 
-import { QueryOptions } from '../types/typedef'
+import { QueryOptions } from '../types/queryParams.d'
 
 const Video = lazy(() => import("./Video"));
 

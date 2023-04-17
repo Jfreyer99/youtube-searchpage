@@ -1,7 +1,7 @@
 import { useState, FC, Suspense, useEffect} from 'react'
 import '../App.css'
 
-import { QueryOptions } from '../types/typedef'
+import { QueryOptions } from '../types/queryParams.d'
 import SearchBar from './SearchBar'
 import VideoRenderer from '../components/VideoRenderer'
 import Header from '../components/Header'

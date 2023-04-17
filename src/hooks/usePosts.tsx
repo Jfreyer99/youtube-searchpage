@@ -1,7 +1,7 @@
 import  { useState, useEffect} from 'react'
 import {getPostsPage} from "../api/axios"
 
-import { QueryOptions } from "../types/typedef"
+import { QueryOptions } from "../types/queryParams.d"
 
 const usePosts = (pageNum : number, handle : string , queryParams: QueryOptions) => {
     const [results, setResults] = useState(Array<Object>);

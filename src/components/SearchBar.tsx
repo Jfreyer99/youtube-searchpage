@@ -2,7 +2,7 @@ import { useState, FC, useRef, useEffect } from 'react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import {AiOutlineArrowUp} from 'react-icons/ai'
-import { QueryOptions } from '../types/typedef'
+import { QueryOptions } from '../types/queryParams.d'
 
 interface AppProps{
     setCurrentSubmittedUserHandle: React.Dispatch<React.SetStateAction<string>>,

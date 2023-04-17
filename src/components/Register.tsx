@@ -2,6 +2,8 @@ import styles from "./register.module.css"
 import { useState, useEffect, FC } from "react";
 import { useNavigate } from 'react-router-dom'
 
+import  { UserRegister } from './../types/user.d';
+
 const Register:FC = () => {
 
     const[username, setUsername] = useState("");
@@ -18,6 +20,13 @@ const Register:FC = () => {
 
     const handleSignUp = (e : React.MouseEvent) => {
 
+        const user : UserRegister = {
+            email: email,
+            password: password,
+            username: username,
+        }
+
+        console.log(user)
     }
 
     const redirectSearch = () => {
