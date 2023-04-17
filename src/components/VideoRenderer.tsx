@@ -1,4 +1,4 @@
-import { FC, lazy, useState, useCallback, useRef, useEffect } from 'react'
+import { FC, lazy, useState, useCallback, useRef, useEffect, Suspense } from 'react'
 import { useParams } from 'react-router-dom';
 import usePosts from '../hooks/usePosts';
 
@@ -51,6 +51,7 @@ const VideoRenderer:FC<AppProps> = (props) => {
     const content = results.map((video, i) => {
         if(results.length === i+1){
             const temp = JSON.parse(JSON.stringify(video));
+
             return <Video ref={lastPostRef} key={temp.videoURL} title={temp.title} uploadDate={temp.uploadDate} viewCount={temp.viewCount} videoURL={temp.videoURL} thumbnailURL={temp.thumbnailURL}></Video>
         }
         const temp = JSON.parse(JSON.stringify(video));
