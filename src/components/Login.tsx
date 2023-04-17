@@ -1,6 +1,6 @@
 import style from "./login.module.css"
 
-import { getLogin } from "../api/axios"
+import { getUser } from "../api/axios"
 
 import { useState, useEffect, FC } from "react"
 import { useNavigate } from 'react-router-dom'
@@ -13,7 +13,7 @@ const Login:FC = () => {
     const[password, setPassword] = useState("");
 
     const handleLogin = (e : React.MouseEvent) => {
-        getLogin({email, password})
+        getUser()
     }
 
     const redirectRegister = () => {

@@ -16,17 +16,17 @@ export const getPostsPage = async (pageParam = 0, handle = "", searchOptions : Q
     return response.data;
 }
 
-export const postLogin = async (user : User) => {
-    const response = await apiUsers.post(JSON.stringify(user));
+export const postLogin = async (user : User, options = {}) => {
+    const response = await apiUsers.post("/login", user, options);
     return response.data;
 }
 
-export const postRegister = async (user : User) => {
-    const response = await apiUsers.post(JSON.stringify(user));
+export const postRegister = async (user : User, options = {}) => {
+    const response = await apiUsers.post("/register", user, options);
     return response.data;
 }
 
-export const getLogin = async (user : User) => {
-    const response = await apiUsers.get(`/${user.email}`);
+export const getUser = async () => {
+    const response = await apiUsers.get("");
     return response.data;
 }

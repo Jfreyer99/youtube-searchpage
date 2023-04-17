@@ -2,6 +2,8 @@ import styles from "./register.module.css"
 import { useState, useEffect, FC } from "react";
 import { useNavigate } from 'react-router-dom'
 
+import { postRegister } from "../api/axios"
+
 import  { UserRegister } from './../types/user.d';
 
 const Register:FC = () => {
@@ -25,6 +27,8 @@ const Register:FC = () => {
             password: password,
             username: username,
         }
+
+        postRegister(user);
 
         console.log(user)
     }
