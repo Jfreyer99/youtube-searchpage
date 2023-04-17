@@ -1,8 +1,8 @@
 import style from "./login.module.css"
-import { useState, useEffect } from "react"
+import { useState, useEffect, FC } from "react"
 import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const Login:FC = () => {
 
     const navigate = useNavigate();
     

@@ -1,8 +1,8 @@
 import styles from "./register.module.css"
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import { useNavigate } from 'react-router-dom'
 
-const Register = () => {
+const Register:FC = () => {
 
     const[username, setUsername] = useState("");
     const[email, setEmail] = useState("");
