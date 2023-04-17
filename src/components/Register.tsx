@@ -20,6 +20,10 @@ const Register:FC = () => {
 
     }
 
+    const redirectSearch = () => {
+        navigate("/")
+    }
+
     return(
     <div className={styles.registerCardWrapper}>
         <div className={styles.registerCard}>
@@ -34,6 +38,7 @@ const Register:FC = () => {
             </div>
             <button onClick={handleSignUp}className={styles.registerButton}> SIGN UP </button>
             <p onClick={redirectLogin} className={styles.registerBottomText}>Already have an account? Login here</p>
+            <p onClick={redirectSearch} className={styles.registerBottomText}> Go back to search</p>
         </div>
     </div>
     );

@@ -17,6 +17,10 @@ const Login:FC = () => {
         navigate("/Register")
     }
 
+    const redirectSearch = () => {
+        navigate("/")
+    }
+
     return (
     <div className={style.registerCardWrapper}>
         <div className={style.registerCard}>
@@ -25,6 +29,7 @@ const Login:FC = () => {
             <input placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className={style.registerInputText} type="password"></input>
             <button onClick={handleLogin}className={style.registerButton}> LOG IN </button>
             <p onClick={redirectRegister} className={style.registerBottomText}>Dont have an Account? Register here</p>
+            <p onClick={redirectSearch} className={style.registerBottomText}> Go back to search</p>
         </div>
     </div>
     )
