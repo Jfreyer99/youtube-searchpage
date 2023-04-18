@@ -1,6 +1,6 @@
 import style from "./login.module.css"
 
-import { getUser } from "../api/axios"
+import { postLogin } from "../api/axios"
 
 import { useState, useEffect, FC } from "react"
 import { useNavigate } from 'react-router-dom'
@@ -9,11 +9,12 @@ const Login:FC = () => {
 
     const navigate = useNavigate();
 
-    const[email, setEmail] = useState("");
+    const[username, setUsername] = useState("");
     const[password, setPassword] = useState("");
 
-    const handleLogin = (e : React.MouseEvent) => {
-        getUser()
+    const handleLogin = async (e : React.MouseEvent) => {
+    const r = await postLogin({username, password})
+    console.log(r);
     }
 
     const redirectRegister = () => {
@@ -28,7 +29,7 @@ const Login:FC = () => {
     <div className={style.registerCardWrapper}>
         <div className={style.registerCard}>
             <h1>Log In</h1>
-            <input placeholder="E-Mail" value={email} onChange={(e) => setEmail(e.target.value)} className={style.registerInputText} type="text"></input>
+            <input placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} className={style.registerInputText} type="text"></input>
             <input placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className={style.registerInputText} type="password"></input>
             <button onClick={handleLogin}className={style.registerButton}> LOG IN </button>
             <p onClick={redirectRegister} className={style.registerBottomText}>Dont have an Account? Register here</p>

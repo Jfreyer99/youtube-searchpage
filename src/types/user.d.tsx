@@ -1,6 +1,6 @@
 export declare type User = {
-    email: string,
+    username: string,
     password: string
 }
 
-export declare type UserRegister = User & {"username": string}
+export declare type UserRegister = User & {"email": string}

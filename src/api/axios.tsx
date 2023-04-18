@@ -17,7 +17,7 @@ export const getPostsPage = async (pageParam = 0, handle = "", searchOptions : Q
 }
 
 export const postLogin = async (user : User, options = {}) => {
-    const response = await apiUsers.post("/login", user, options);
+    const response = await apiUsers.post("/login", {username: user.username, password: user.password}, options);
     return response.data;
 }
 
