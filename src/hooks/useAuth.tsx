@@ -1,11 +1,8 @@
-//TODO to be implemented
-
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "../api/axios"
 
-
-export const useAuth = () => {
+export const useAuth = (url? : string) => {
 
     const navigate = useNavigate();
     const[auth, setAuth] = useState(false);
@@ -19,6 +16,9 @@ export const useAuth = () => {
                 setUsername(data.username);
                 setEmail(data.email);
                 setAuth(true)
+                if(url){
+                    navigate(url);
+                }
             }
             else{
                 setAuth(false)
