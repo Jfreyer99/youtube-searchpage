@@ -14,23 +14,33 @@ const Register:FC = () => {
     const[password, setPassword] = useState("");
     const[passwordRepeat, setPasswordRepeat] = useState("");
 
+    const[error, setError] = useState(false);
+    const[loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
     const redirectLogin = (e : React.MouseEvent) => {
         navigate("/Login");
     }
 
-    const handleSignUp = (e : React.MouseEvent) => {
-
+    const handleSignUp =  async (e : React.MouseEvent) => {
+        //TODO Error checking for input
         const user : UserRegister = {
             email: email,
             password: password,
             username: username,
         }
 
-        postRegister(user);
-
-        console.log(user)
+        try{
+        const response : string = await postRegister(user);
+        setLoading(true);
+        if(response){
+            navigate("/Login")
+        }
+        }catch(err){
+            setLoading(false);
+            setError(true);
+        }
     }
 
     const redirectSearch = () => {
@@ -41,6 +51,8 @@ const Register:FC = () => {
     <div className={styles.registerCardWrapper}>
         <div className={styles.registerCard}>
             <h1>Create Account</h1>
+            {error && <h2>Fehler beim erstellen des Nutzers bitte gebe andere Daten an</h2>}
+            {loading && <h2>Waiting for feedback from the server</h2>}
             <input autoFocus placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} className={styles.registerInputText} type="text"></input>
             <input placeholder="E-Mail" value={email} onChange={(e) => setEmail(e.target.value)} className={styles.registerInputText} type="text"></input>
             <input placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className={styles.registerInputText} type="password"></input>

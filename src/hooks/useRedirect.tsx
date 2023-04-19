@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-
-const useRedirect = (redirectUrl: string, waitTimeInSeconds: number) =>{
+const useRedirect = (redirectUrl: string, waitTimeInSeconds: number) => {
 
     const navigate = useNavigate();
     const[secondsElapsed, setSecondsElapsed] = useState(0);

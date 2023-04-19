@@ -1,9 +1,9 @@
 import style from "./login.module.css"
 
 import { postLogin } from "../api/axios"
-
 import { useState, useEffect, FC } from "react"
 import { useNavigate } from 'react-router-dom'
+import { UserRegister } from "../types/user.d"
 
 const Login:FC = () => {
 
@@ -13,8 +13,12 @@ const Login:FC = () => {
     const[password, setPassword] = useState("");
 
     const handleLogin = async (e : React.MouseEvent) => {
-    const r = await postLogin({username, password})
-    console.log(r);
+    const user : UserRegister = await postLogin({username, password})
+        if(user){
+            navigate("/Dashboard");
+        }else{
+            navigate("/");
+        }
     }
 
     const redirectRegister = () => {

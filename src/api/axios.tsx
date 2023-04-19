@@ -26,7 +26,7 @@ export const postRegister = async (user : User, options = {}) => {
     return response.data;
 }
 
-export const getUser = async () => {
-    const response = await apiUsers.get("");
+export const getAuth = async () => {
+    const response = await apiUsers.get("/isAuth");
     return response.data;
 }

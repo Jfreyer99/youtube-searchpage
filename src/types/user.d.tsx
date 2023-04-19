@@ -3,4 +3,4 @@ export declare type User = {
     password: string
 }
 
-export declare type UserRegister = User & {"email": string}
+export declare type UserRegister = User & {"email": string, "_id"?: string}
