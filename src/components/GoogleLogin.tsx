@@ -27,7 +27,6 @@ const GoogleLogin:FC<AppProps> = (props) => {
             {
               ele!.hidden = false;
             }
-
       }
     
       useEffect(() => {
@@ -36,7 +35,6 @@ const GoogleLogin:FC<AppProps> = (props) => {
           client_id: "494911975110-0rad88snv5dk0m0ch3uafbti8htogbqu.apps.googleusercontent.com",
           callback: handleCallbackResponse
         });
-    
         
         google.accounts.id.renderButton(
           document.getElementById("signInDiv")!,

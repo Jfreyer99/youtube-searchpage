@@ -1,11 +1,32 @@
 import axios from 'axios'
+import { QueryOptions } from '../types/queryParams.d';
+import { User } from '../types/user.d';
 
-
-export const api = axios.create({
+const apiVideos = axios.create({
     baseURL : `http://localhost:8000/v1/youtubeVideoList`
 });
 
-export const getPostsPage = async (pageParam = 0, handle = "", options = {}) => {
-    const response = await api.get(`/${handle}/?page=${pageParam}`, options)
+const apiUsers = axios.create({
+    baseURL : `http://localhost:8000/v1/user`,
+    withCredentials: true,
+});
+
+export const getPostsPage = async (pageParam = 0, handle = "", searchOptions : QueryOptions, options = {}) => {
+    const response = await apiVideos.get(`/${handle}/?page=${pageParam}&sort=${searchOptions.sort}&title=${searchOptions.title}&dateBefore=${searchOptions.dateBefore}`, options)
+    return response.data;
+}
+
+export const postLogin = async (user : User, options = {}) => {
+    const response = await apiUsers.post("/login", {username: user.username, password: user.password}, options);
+    return response.data;
+}
+
+export const postRegister = async (user : User, options = {}) => {
+    const response = await apiUsers.post("/register", user, options);
+    return response.data;
+}
+
+export const getAuth = async () => {
+    const response = await apiUsers.get("/isAuth");
     return response.data;
 }

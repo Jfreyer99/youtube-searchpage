@@ -1,26 +1,26 @@
-import { useState, FC} from 'react'
+import { FC } from 'react'
 import './App.css'
 
-import SearchBar from './Search'
-import VideoRenderer from './VideoRenderer'
-import GoogleLogin from './GoogleLogin'
+import VideoRendererWrapper from './components/VideoRendererWrapper';
+import { Route, Routes } from 'react-router-dom';
+import Register from './components/Register';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import NotFound from './components/NotFound';
 
 const App:FC = () => {
 
-  const[videos, setVideos] = useState(Array<Object>)
-  const[user, setUser] = useState({})
-
   return (
-    <div id="main">
-      <div id="info">
-          <div>invisible</div>
-          <div id="title"><h1 >Advanced Youtube Search</h1></div>
-          <div><GoogleLogin setUser={setUser} user={user}> </GoogleLogin></div>
-      </div>
-        <SearchBar setVideos={setVideos}></SearchBar>
-         {/** Render Video Renderer when search button is clicked pass handle to component */}
-        <VideoRenderer handle={"@PaulDavids"} ></VideoRenderer>
-      </div>
+    <>
+    <Routes>
+      <Route path="/" element={<VideoRendererWrapper/>}></Route>
+      <Route path="/:handleUrl" element={<VideoRendererWrapper/>}></Route>
+      <Route path="/Register" element={<Register></Register>}></Route>
+      <Route path="/Login" element={<Login></Login>}></Route>
+      <Route path="/Dashboard" element={<Dashboard></Dashboard>}></Route>
+      <Route path="*" element={<NotFound></NotFound>}></Route>
+    </Routes>
+    </>
   )
 }
 

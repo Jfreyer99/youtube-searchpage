@@ -1,7 +1,5 @@
-import { FC, JSXElementConstructor} from 'react'
 import {BsDot} from 'react-icons/bs'
-import InfiniteScroll from 'react-infinite-scroller';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 interface VideoRendererProps{
     title : string,
@@ -12,11 +10,11 @@ interface VideoRendererProps{
 }
 
 const Video = React.forwardRef<HTMLDivElement, VideoRendererProps>((props, ref) => {
-
     const videoBody = (
         <a className="videoURL" href={`https://youtube.com${props.videoURL}`} target="_blank">
         <div className="video">
-            <img className="videoThumbnail animateVideo" src={props.thumbnailURL}></img>
+            <img loading="lazy" className="videoThumbnail animateVideo" src={props.thumbnailURL ? props.thumbnailURL : 
+                "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.w8ErQFq8xOFc_yw1YSIwbwHaHa%26pid%3DApi&f=1&ipt=dea8c0ae522948021089de7fdcf590bffd9bb2bdca3f87a72ed2e5d21e3ec828&ipo=images"}></img>
             <div className="videoInfo">
                 <div className="videoTitle">
                     <span className="titleText">{props.title}</span>
@@ -32,9 +30,9 @@ const Video = React.forwardRef<HTMLDivElement, VideoRendererProps>((props, ref) 
     const content = ref ? <div ref={ref}>{videoBody}</div> : <div>{videoBody}</div>
 
     return (
-        <>
+        <div className="p-10">
         {content}
-        </>
+        </div>
     );
 });
 
