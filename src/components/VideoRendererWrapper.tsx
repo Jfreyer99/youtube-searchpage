@@ -6,9 +6,13 @@ import SearchBar from './SearchBar'
 import VideoRenderer from '../components/VideoRenderer'
 import Header from '../components/Header'
 import { useParams, useSearchParams } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
 
 
 const VideoRendererWrapper:FC = () => {
+
+    //TODO .catch logic isnt right
+    const { auth, username } = useAuth();
 
     const { handleUrl } = useParams();
     const[currentSubmittedUserHandle, setCurrentSubmittedUserHandle] = useState("");
@@ -17,7 +21,7 @@ const VideoRendererWrapper:FC = () => {
 
   return (
     <div id="main">
-        <Header></Header>
+        <Header auth={auth} username={username}></Header>
         <SearchBar handleUrl={handleUrl} searching={searching} setCurrentSubmittedUserHandle={setCurrentSubmittedUserHandle} setQueryParams={setQueryParams} setSearching={setSearching}></SearchBar>
         <Suspense fallback={<h1> Loading... </h1>}>
         {searching && <VideoRenderer queryParams={queryParams} handle={currentSubmittedUserHandle} ></VideoRenderer>}

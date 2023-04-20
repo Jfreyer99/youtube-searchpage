@@ -1,0 +1,15 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.heading{
+
+}
+
+#dashboardWrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

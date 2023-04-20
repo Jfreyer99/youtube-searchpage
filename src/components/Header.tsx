@@ -1,13 +1,24 @@
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
 import style from './header.module.css'
 
-const Header:FC = () => {
+interface HeaderProps {
+    username: string,
+    auth: boolean
+}
+
+
+const Header:FC<HeaderProps> = (props) => {
 
     const navigate = useNavigate();
 
     const handleLogin = (e: React.MouseEvent) => {
-        navigate("/login")
+        if(props.auth){
+            navigate("/Dashboard")
+        }else{
+            navigate("/login")
+        }
     }
 
     return(
@@ -15,7 +26,7 @@ const Header:FC = () => {
         <header id={style.header}>
             <ul id={style.list}>
                 <li id={style.heading}>Advanced Youtube Search</li>
-                <li id={style.login} onClick={handleLogin}>Log In</li>
+                <li id={style.login} onClick={handleLogin}>{ props.auth ? props.username : 'Log In'}</li>
             </ul>
         </header>
     </>

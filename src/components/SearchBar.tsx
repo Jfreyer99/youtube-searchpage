@@ -1,4 +1,4 @@
-import { useState, FC, useRef, useEffect } from 'react'
+import { useState, FC, useEffect } from 'react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import {AiOutlineArrowUp} from 'react-icons/ai'

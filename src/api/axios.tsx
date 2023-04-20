@@ -30,3 +30,8 @@ export const getAuth = async () => {
     const response = await apiUsers.get("/isAuth");
     return response.data;
 }
+
+export const logout = async () => {
+    const response = await apiUsers.get("/logout");
+    return response.data;
+}
