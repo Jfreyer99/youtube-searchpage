@@ -6,7 +6,7 @@ interface ScrapingProps {
 
 const Scraping:FC<ScrapingProps> = (props) => {
     return (<>
-        <p>Settings</p>
+        <p>Scraping</p>
     </>)
 }
 

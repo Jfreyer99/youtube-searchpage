@@ -6,7 +6,7 @@ interface LogoutProps {
 
 const Logout:FC<LogoutProps> = (props) => {
     return (<>
-        <p>Settings</p>
+        <p>Logout</p>
     </>)
 }
 

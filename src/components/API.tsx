@@ -6,7 +6,7 @@ interface APIProps {
 
 const API:FC<APIProps> = (props) => {
     return (<>
-        <p>Settings</p>
+        <p>API</p>
     </>)
 }
 

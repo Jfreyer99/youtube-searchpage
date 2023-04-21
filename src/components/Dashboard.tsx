@@ -1,17 +1,38 @@
 import { useAuth } from "../hooks/useAuth"
 import { useNavigate } from "react-router-dom";
 import { logout } from "../api/axios";
-import { DashboardList } from "./DashboardList";
-import DashboardContent from "./DashboardContent";
 import { FC, useState } from "react";
 
 import style from "./dashboard.module.css"
 
+import API from "./API";
+import Logout from "./Logout";
+import Settings from "./Settings";
+import Scraping from "./Scraping"
+import SearchSettings from "./SearchSettings";
+
+import DashboardContent from "./DashboardContent";
+import DashboardList from "./DashboardList";
+import DashboardComponent from "../types/DashboardComponent.d";
+import DashBoardComponentList from "../types/DashboardComponentsList.d";
+import Account from "./Account";
+
 const Dashboard:FC = () => {
 
     const {auth, username, email} = useAuth(undefined, "/Login");
+    
+    const[components] = useState<DashBoardComponentList>
+    ({
+    list : 
+    [{"name": "Settings", "component": <Settings></Settings>},
+    {"name": "Scraping", "component": <Scraping></Scraping>},
+    {"name": "API", "component": <API></API>},
+    {"name": "Logout", "component": <Logout></Logout>},
+    {"name": "SearchSettings", "component": <SearchSettings></SearchSettings>},
+    {"name": "Account Settings", "component": <Account></Account>},
+    ]});
 
-    const[currentComponent, setCurrentComponent] = useState("");
+    const[currentComponent, setCurrentComponent] = useState<DashboardComponent>({ name: "Settings", component: <Settings></Settings> });
 
     const navigate = useNavigate();
 
@@ -32,8 +53,8 @@ const Dashboard:FC = () => {
             <h2 onClick={handleLogout}>Logout</h2>
         </div>
         <div id={style.dashboardWrapper}>
-            <DashboardList listElements={["asdf","asdf"]}></DashboardList>
-            <DashboardContent></DashboardContent>
+            <DashboardList components={components} setComponent={setCurrentComponent}></DashboardList>
+            <DashboardContent currentComponent={currentComponent}></DashboardContent>
         </div>
     </>
     )

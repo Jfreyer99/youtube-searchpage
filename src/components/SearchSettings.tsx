@@ -6,7 +6,7 @@ interface SearchSettingsProps {
 
 const SearchSettings:FC<SearchSettingsProps> = (props) => {
     return (<>
-        <p>Settings</p>
+        <p>SearchBar Settings</p>
     </>)
 }
 
