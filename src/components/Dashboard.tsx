@@ -25,11 +25,11 @@ const Dashboard:FC = () => {
     ({
     list : 
     [{"name": "Settings", "component": <Settings></Settings>},
+    {"name": "Account Settings", "component": <Account></Account>},
+    {"name": "SearchSettings", "component": <SearchSettings></SearchSettings>},
     {"name": "Scraping", "component": <Scraping></Scraping>},
     {"name": "API", "component": <API></API>},
     {"name": "Logout", "component": <Logout></Logout>},
-    {"name": "SearchSettings", "component": <SearchSettings></SearchSettings>},
-    {"name": "Account Settings", "component": <Account></Account>},
     ]});
 
     const[currentComponent, setCurrentComponent] = useState<DashboardComponent>({ name: "Settings", component: <Settings></Settings> });

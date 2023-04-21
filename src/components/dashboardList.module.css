@@ -1,0 +1,9 @@
+#dashboardList{
+    margin-top: 2em;
+    padding-left: 7em;
+    display: flex;
+    flex-direction: column;
+    min-width: 30vw;
+    justify-content: start;
+    align-items: start;
+}
