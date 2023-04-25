@@ -19,7 +19,7 @@ const VideoRenderer:FC<AppProps> = (props) => {
         setPageNum(0)
     }, [props.handle, props.queryParams])
 
-    let {
+    const {
         isLoading,
         isError,
         error,

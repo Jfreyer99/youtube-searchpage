@@ -1,4 +1,5 @@
 import { FC } from "react"
+import DashboardContentHeader from "./DashboardContentHeader"
 
 interface AccountProps{
 
@@ -7,7 +8,8 @@ interface AccountProps{
 const Account:FC<AccountProps> = () => {
     return(
         <>
-        Account
+        <DashboardContentHeader title="Account"></DashboardContentHeader>
+        <p>Account</p>
         </>
     )
 }

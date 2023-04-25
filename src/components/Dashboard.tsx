@@ -7,7 +7,7 @@ import style from "./dashboard.module.css"
 
 import API from "./API";
 import Logout from "./Logout";
-import Settings from "./Settings";
+import AppSettings from "./AppSettings";
 import Scraping from "./Scraping"
 import SearchSettings from "./SearchSettings";
 
@@ -24,15 +24,15 @@ const Dashboard:FC = () => {
     const[components] = useState<DashBoardComponentList>
     ({
     list : 
-    [{"name": "Settings", "component": <Settings></Settings>},
+    [{"name": "App Settings", "component": <AppSettings></AppSettings>},
     {"name": "Account Settings", "component": <Account></Account>},
-    {"name": "SearchSettings", "component": <SearchSettings></SearchSettings>},
+    {"name": "Search Settings", "component": <SearchSettings></SearchSettings>},
     {"name": "Scraping", "component": <Scraping></Scraping>},
     {"name": "API", "component": <API></API>},
     {"name": "Logout", "component": <Logout></Logout>},
     ]});
 
-    const[currentComponent, setCurrentComponent] = useState<DashboardComponent>({ name: "Settings", component: <Settings></Settings> });
+    const[currentComponent, setCurrentComponent] = useState<DashboardComponent>({ name: "Settings", component: <AppSettings></AppSettings> });
 
     const navigate = useNavigate();
 

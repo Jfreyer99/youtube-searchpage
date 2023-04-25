@@ -9,6 +9,9 @@ user : {},
 
 const GoogleLogin:FC<AppProps> = (props) => {
 
+
+  const configValue : string = process.env.REACT_APP_CLIENT_ID
+
     const handleCallbackResponse = (response : any) => {
         let userObject : {} = jwt_decode(response.credential);
         props.setUser(userObject);
@@ -30,9 +33,8 @@ const GoogleLogin:FC<AppProps> = (props) => {
       }
     
       useEffect(() => {
-
         google.accounts.id.initialize({
-          client_id: "your own thing",
+          client_id: process.env.CLIENT_ID,
           callback: handleCallbackResponse
         });
         

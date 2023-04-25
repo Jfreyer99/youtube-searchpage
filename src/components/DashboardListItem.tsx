@@ -1,4 +1,5 @@
 import { FC } from "react"
+import style from './dashboardListItem.module.css'
 
 interface DashboardItemProps {
     itemName: string,
@@ -14,8 +15,8 @@ const DashboardListItem:FC<DashboardItemProps> = (props) => {
     }
 
     return(
-        <div onClick={handleOnClick}>
-            <h1>{props.itemName}</h1>
+        <div className={style.text} onClick={handleOnClick}>
+            {props.itemName}
         </div>
     )
 }

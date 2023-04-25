@@ -1,0 +1,10 @@
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    flex-direction: column;
+    margin-left: 3%;
+    margin-right: 3%;
+    border: 1px solid black;
+}
