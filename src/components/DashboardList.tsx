@@ -13,11 +13,9 @@ interface DashboardListProps {
 const DashboardList:FC<DashboardListProps> = (props) => {
 
     const handleContentChange = (e : React.MouseEvent, elementName: string) => {
-        let ele : JSX.Element;
         for(let element of props.components["list"]){
             if(element.name === elementName){
-                ele = element.component
-                props.setComponent({"name": elementName, "component": ele})
+                props.setComponent({"name": elementName, "component": element.component})
                 break;
             }
         }

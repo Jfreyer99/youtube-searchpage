@@ -8,7 +8,6 @@ interface HeaderProps {
     auth: boolean
 }
 
-
 const Header:FC<HeaderProps> = (props) => {
 
     const navigate = useNavigate();
