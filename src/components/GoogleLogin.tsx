@@ -32,7 +32,7 @@ const GoogleLogin:FC<AppProps> = (props) => {
       useEffect(() => {
 
         google.accounts.id.initialize({
-          client_id: "494911975110-0rad88snv5dk0m0ch3uafbti8htogbqu.apps.googleusercontent.com",
+          client_id: "your own thing",
           callback: handleCallbackResponse
         });
         
